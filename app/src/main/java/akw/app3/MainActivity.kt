@@ -18,38 +18,43 @@ class MainActivity : AppCompatActivity() {
             App3Theme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Scaffold(
-                            topBar = {
-                                TopAppBar(
-                                        title = { Text("abc123") },
-                                        navigationIcon = {
-                                            IconButton(onClick = {}) {
-                                                Icon(Icons.Filled.Menu)
-                                            }
-                                        }
-
-                                )
-                            },
-                            bodyContent = { innerPadding ->
-                                Greeting("Android")
-                            },
-                            floatingActionButton = { ExtendedFloatingActionButton(text = { Text("fab") }, onClick = {}) }
-                    )
+                    ScaffoldDemo()
                 }
             }
         }
     }
+
+
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun ScaffoldDemo() {
+    val scaffoldState = rememberScaffoldState()
+    Scaffold(
+            scaffoldState = scaffoldState,
+            drawerContent = { Text("Drawer Content") },
+            topBar = {
+                TopAppBar(
+                        title = { Text("abc123") },
+                        navigationIcon = {
+                            IconButton(onClick = { scaffoldState.drawerState.open() }) {
+                                Icon(Icons.Filled.Menu)
+                            }
+                        }
+
+                )
+            },
+            bodyContent = { innerPadding ->
+                Text("Body Content")
+            },
+            floatingActionButton = { ExtendedFloatingActionButton(text = { Text("fab") }, onClick = {}) }
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     App3Theme {
-        Greeting("Android")
+        ScaffoldDemo()
     }
 }
