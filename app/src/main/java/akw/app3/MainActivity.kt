@@ -1,14 +1,15 @@
 package akw.app3
 
+import akw.app3.ui.App3Theme
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Text
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.setContent
 import androidx.ui.tooling.preview.Preview
-import akw.app3.ui.App3Theme
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +18,23 @@ class MainActivity : AppCompatActivity() {
             App3Theme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    Scaffold(
+                            topBar = {
+                                TopAppBar(
+                                        title = { Text("abc123") },
+                                        navigationIcon = {
+                                            IconButton(onClick = {}) {
+                                                Icon(Icons.Filled.Menu)
+                                            }
+                                        }
+
+                                )
+                            },
+                            bodyContent = { innerPadding ->
+                                Greeting("Android")
+                            },
+                            floatingActionButton = { ExtendedFloatingActionButton(text = { Text("fab") }, onClick = {}) }
+                    )
                 }
             }
         }
