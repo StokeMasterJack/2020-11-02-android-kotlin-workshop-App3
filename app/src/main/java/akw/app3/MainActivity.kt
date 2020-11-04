@@ -3,7 +3,9 @@ package akw.app3
 import akw.app3.ui.App3Theme
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
@@ -45,7 +47,9 @@ fun ScaffoldDemo() {
                 )
             },
             bodyContent = { innerPadding ->
-                Text("Body Content")
+                ScrollableColumn(contentPadding = innerPadding) {
+                    repeat(100) { Text("Row $it") }
+                }
             },
             floatingActionButton = { ExtendedFloatingActionButton(text = { Text("fab") }, onClick = {}) }
     )
